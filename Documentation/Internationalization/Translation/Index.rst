@@ -56,10 +56,12 @@ Custom translations
 The :code:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']` allows to
 override both locallang-XML and XLIFF files. Actually this is not just about translations.
 Default language files can also be overridden. In the case of XLIFF files, the
-syntax is as follows::
+syntax is as follows (to be placed in an extension's :file:`ext_localconf.php` file):
 
-   $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:cms/locallang_tca.xlf'][] = 'EXT:examples/Resources/Private/Language/custom.xlf';
-   $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['de']['EXT:cms/locallang_tca.xlf'][] = 'EXT:examples/Resources/Private/Language/de.custom.xlf';
+.. code-block:: php
+
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:cms/locallang_tca.xlf'][] = 'EXT:examples/Resources/Private/Language/custom.xlf';
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['de']['EXT:cms/locallang_tca.xlf'][] = 'EXT:examples/Resources/Private/Language/de.custom.xlf';
 
 The first line shows how to override a file in the default language,
 the second how to override a German ("de") translation. The German language file
@@ -90,11 +92,16 @@ and the result can be easily seen in the backend:
 
 
 .. important::
+
+   - Please note that you do not have to copy the full reference file, but only the labels you want to translate.
+
    - The path to the file to override must be expressed as :code:`EXT:foo/bar/...`. For the
      extension "xlf" or "xml" can be used interchangeably. The TYPO3 Core will try both anyway,
      but using "xlf" is more correct and future-proof.
+
    - The files containing the custom labels must be located inside an extension. Other locations
      will not be considered (this is a bug, but must be taken as a constraint for now).
+
 
 .. _xliff-translating-languages:
 
